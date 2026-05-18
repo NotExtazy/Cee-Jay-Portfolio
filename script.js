@@ -18,6 +18,85 @@ document.querySelectorAll('.nav-link').forEach(link => {
     });
 });
 
+// Click photo to toggle skill icons in/out
+const heroPhoto = document.querySelector('.hero-photo');
+const skillWrapper = document.querySelector('.hero-photo-wrapper');
+
+// Origin offsets — where each icon starts (behind the photo center)
+// These match the "from" values in the CSS si-in-* keyframes
+const origins = [
+    { tx:  200, ty:  160, rot: -15 },
+    { tx:  220, ty:   80, rot:   8 },
+    { tx:  210, ty:  -20, rot:  -6 },
+    { tx:   80, ty:  140, rot:  12 },
+    { tx:    0, ty:  180, rot:  -4 },
+    { tx:  -80, ty:  150, rot:  10 },
+    { tx: -200, ty:  160, rot: -12 },
+    { tx: -220, ty:   80, rot:   7 },
+];
+
+const delays = [0.3, 0.4, 0.5, 0.35, 0.45, 0.38, 0.32, 0.42];
+
+// Inject a dynamic keyframe into the page
+function injectKeyframe(name, from, to) {
+    const existing = document.getElementById(name);
+    if (existing) existing.remove();
+    const style = document.createElement('style');
+    style.id = name;
+    style.textContent = `@keyframes ${name} { from { ${from} } to { ${to} } }`;
+    document.head.appendChild(style);
+}
+
+function showIcons(icons) {
+    icons.forEach((icon, i) => {
+        const { tx, ty, rot } = origins[i];
+        const name = `si-show-${i}`;
+        injectKeyframe(
+            name,
+            `transform: rotate(${rot}deg) translate(${tx}px, ${ty}px) scale(0.2); opacity: 0;`,
+            `transform: rotate(${rot}deg) translate(0, 0) scale(1); opacity: 1;`
+        );
+        icon.style.opacity = '';
+        icon.style.transform = '';
+        icon.style.animation = 'none';
+        icon.offsetHeight; // reflow
+        icon.style.animation = `${name} 0.8s cubic-bezier(0.22,1,0.36,1) ${delays[i]}s both`;
+        icon.style.pointerEvents = '';
+    });
+}
+
+function hideIcons(icons) {
+    icons.forEach((icon, i) => {
+        const { tx, ty, rot } = origins[i];
+        const name = `si-hide-${i}`;
+        // Read current computed transform so we start from exactly where the icon is
+        injectKeyframe(
+            name,
+            `transform: rotate(${rot}deg) translate(0, 0) scale(1); opacity: 1;`,
+            `transform: rotate(${rot}deg) translate(${tx}px, ${ty}px) scale(0.2); opacity: 0;`
+        );
+        icon.style.animation = 'none';
+        icon.offsetHeight; // reflow
+        icon.style.pointerEvents = 'none';
+        icon.style.animation = `${name} 0.6s cubic-bezier(0.55,0,1,0.45) ${i * 0.04}s both`;
+    });
+}
+
+if (heroPhoto && skillWrapper) {
+    heroPhoto.style.cursor = 'pointer';
+    let iconsVisible = true;
+
+    heroPhoto.addEventListener('click', () => {
+        const icons = [...document.querySelectorAll('.skill-icon')];
+        if (iconsVisible) {
+            hideIcons(icons);
+        } else {
+            showIcons(icons);
+        }
+        iconsVisible = !iconsVisible;
+    });
+}
+
 // Close mobile menu when clicking outside
 document.addEventListener('click', (e) => {
     if (window.innerWidth <= 768) {

@@ -602,8 +602,16 @@ section {
 
 .strong-points-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
+}
+
+/* Center the last 2 cards in the second row */
+.strong-point-item:nth-child(5) {
+    grid-column: 2;
+}
+.strong-point-item:nth-child(6) {
+    grid-column: 3;
 }
 
 .strong-point-item {
@@ -900,8 +908,187 @@ section {
 }
 
 /* =====================
-   RESPONSIVE — TABLET (≤ 1024px)
+   HERO PHOTO
    ===================== */
+.hero-photo-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 420px;
+    height: 460px;
+    margin: 0 auto;
+}
+
+/* Remove glow elements — hidden */
+.hero-photo-glow,
+.hero-photo-ring,
+.ring-2 {
+    display: none;
+}
+
+/* The actual photo */
+.hero-photo {
+    position: relative;
+    z-index: 5;
+    width: 390px;
+    height: 430px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    filter:
+        drop-shadow(0 0 4px rgba(0, 255, 255, 0.9))
+        drop-shadow(0 0 10px rgba(0, 255, 255, 0.6))
+        drop-shadow(0 0 20px rgba(0, 255, 255, 0.3));
+    animation: outline-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes outline-glow {
+    from {
+        filter:
+            drop-shadow(0 0 4px rgba(0, 255, 255, 1))
+            drop-shadow(0 0 10px rgba(0, 255, 255, 0.7))
+            drop-shadow(0 0 22px rgba(0, 255, 255, 0.3));
+    }
+    to {
+        filter:
+            drop-shadow(0 0 4px rgba(255, 0, 255, 1))
+            drop-shadow(0 0 10px rgba(255, 0, 255, 0.7))
+            drop-shadow(0 0 22px rgba(255, 0, 255, 0.3));
+    }
+}
+
+/* =====================
+   FLOATING SKILL ICONS — SCATTERED AROUND PHOTO
+   ===================== */
+.skill-icon {
+    position: absolute;
+    width: 54px;
+    height: 54px;
+    background: rgba(8, 8, 8, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 3;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transform-origin: center center;
+}
+
+.skill-icon i { font-size: 1.7rem; }
+
+/* Brand colors */
+.si-1 i { color: #e34f26; }   /* HTML5      */
+.si-2 i { color: #264de4; }   /* CSS3       */
+.si-3 i { color: #f7df1e; }   /* JavaScript */
+.si-4 i { color: #8892be; }   /* PHP        */
+.si-5 i { color: #00adef; }   /* ASP.NET    */
+.si-6 i { color: #00758f; }   /* MySQL      */
+.si-7 i { color: #00979d; }   /* Arduino    */
+.si-8 i { color: #ff6b6b; }   /* Security   */
+
+/*
+   Scattered / rattled positions — messy organic layout around the photo.
+   Icons are placed at different distances and angles, some tilted.
+   top/left/right are relative to the wrapper.
+*/
+.si-1 { top: 2%;  left: -2%;  animation: si-in-1 0.8s cubic-bezier(0.22,1,0.36,1) 0.3s  both; }
+.si-2 { top: 18%; left: -8%;  animation: si-in-2 0.8s cubic-bezier(0.22,1,0.36,1) 0.4s  both; }
+.si-3 { top: 38%; left: -5%;  animation: si-in-3 0.8s cubic-bezier(0.22,1,0.36,1) 0.5s  both; }
+.si-4 { top: 8%;  left: 22%;  animation: si-in-4 0.8s cubic-bezier(0.22,1,0.36,1) 0.35s both; }
+.si-5 { top: 0%;  left: 42%;  animation: si-in-5 0.8s cubic-bezier(0.22,1,0.36,1) 0.45s both; }
+.si-6 { top: 5%;  right: 18%; animation: si-in-6 0.8s cubic-bezier(0.22,1,0.36,1) 0.38s both; }
+.si-7 { top: 2%;  right: -2%; animation: si-in-7 0.8s cubic-bezier(0.22,1,0.36,1) 0.32s both; }
+.si-8 { top: 20%; right: -8%; animation: si-in-8 0.8s cubic-bezier(0.22,1,0.36,1) 0.42s both; }
+
+/* Each bursts from center with its own tilt baked into the final transform */
+/* "from" translate values push the icon back to photo center before animating out */
+@keyframes si-in-1 {
+    from { transform: rotate(-15deg) translate(200px, 160px) scale(0.3); opacity:0; z-index: 3; }
+    to   { transform: rotate(-15deg) translate(0, 0)         scale(1);   opacity:1; }
+}
+@keyframes si-in-2 {
+    from { transform: rotate(8deg)   translate(220px, 80px)  scale(0.3); opacity:0; }
+    to   { transform: rotate(8deg)   translate(0, 0)         scale(1);   opacity:1; }
+}
+@keyframes si-in-3 {
+    from { transform: rotate(-6deg)  translate(210px, -20px) scale(0.3); opacity:0; }
+    to   { transform: rotate(-6deg)  translate(0, 0)         scale(1);   opacity:1; }
+}
+@keyframes si-in-4 {
+    from { transform: rotate(12deg)  translate(80px, 140px)  scale(0.3); opacity:0; }
+    to   { transform: rotate(12deg)  translate(0, 0)         scale(1);   opacity:1; }
+}
+@keyframes si-in-5 {
+    from { transform: rotate(-4deg)  translate(0px, 180px)   scale(0.3); opacity:0; }
+    to   { transform: rotate(-4deg)  translate(0, 0)         scale(1);   opacity:1; }
+}
+@keyframes si-in-6 {
+    from { transform: rotate(10deg)  translate(-80px, 150px) scale(0.3); opacity:0; }
+    to   { transform: rotate(10deg)  translate(0, 0)         scale(1);   opacity:1; }
+}
+@keyframes si-in-7 {
+    from { transform: rotate(-12deg) translate(-200px, 160px) scale(0.3); opacity:0; }
+    to   { transform: rotate(-12deg) translate(0, 0)          scale(1);   opacity:1; }
+}
+@keyframes si-in-8 {
+    from { transform: rotate(7deg)   translate(-220px, 80px) scale(0.3); opacity:0; }
+    to   { transform: rotate(7deg)   translate(0, 0)         scale(1);   opacity:1; }
+}
+
+.skill-icon:hover {
+    box-shadow: 0 0 24px rgba(255,255,255,0.2), 0 8px 28px rgba(0,0,0,0.6);
+    filter: brightness(1.3);
+    z-index: 3;
+}
+
+@media (max-width: 768px) {
+    .skill-icon { display: none; }
+}
+
+/* =====================
+   RESPONSIVE — HERO PHOTO
+   ===================== */
+@media (max-width: 1024px) {
+    .hero-photo-wrapper {
+        width: 420px;
+        height: 460px;
+    }
+    .hero-photo {
+        width: 390px;
+        height: 430px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-photo-wrapper {
+        width: 300px;
+        height: 340px;
+    }
+    .hero-photo {
+        width: 280px;
+        height: 320px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-photo-wrapper {
+        width: 240px;
+        height: 280px;
+    }
+    .hero-photo {
+        width: 220px;
+        height: 260px;
+    }
+}
+
+
 @media (max-width: 1024px) {
     .hero-content {
         gap: 2rem;
@@ -986,13 +1173,6 @@ section {
 
     .hero-visual { order: -1; }
 
-    .floating-card {
-        width: 120px;
-        height: 120px;
-    }
-
-    .card-content { font-size: 2.8rem; }
-
     /* About */
     .about-content {
         grid-template-columns: 1fr;
@@ -1012,7 +1192,13 @@ section {
     .skill-list { grid-template-columns: repeat(2, 1fr); }
 
     /* Strong Points */
-    .strong-points-grid { grid-template-columns: 1fr; }
+    .strong-points-grid {
+        grid-template-columns: 1fr;
+    }
+    .strong-point-item:nth-child(5),
+    .strong-point-item:nth-child(6) {
+        grid-column: auto;
+    }
 
     /* Projects */
     .projects-grid { grid-template-columns: 1fr; }
