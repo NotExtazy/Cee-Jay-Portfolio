@@ -1054,37 +1054,60 @@ section {
 }
 
 @media (max-width: 768px) {
-    .skill-icon { display: flex; }
+    .skill-icon { display: none; }
     .mobile-icons-row { display: none; }
 
     .hero-visual {
         width: 100%;
         display: flex;
         justify-content: center;
-        align-items: flex-start;
-        overflow: visible;
+        align-items: center;
+        position: relative;
     }
 
+    /* Reset wrapper — no scaling */
     .hero-photo-wrapper {
-        transform: scale(0.6);
-        transform-origin: center top;
-        margin-bottom: -170px;
+        transform: none;
+        margin-bottom: 0;
+        width: 260px;
+        height: 300px;
+        position: relative;
     }
 
-    /* Override % positions with px so they spread evenly around the scaled photo */
-    /* Left column — spread vertically down the left */
-    .si-1 { top: 30px;  left: 20px;  right: auto; }
-    .si-2 { top: 110px; left: 5px;   right: auto; }
-    .si-3 { top: 200px; left: 20px;  right: auto; }
+    /* Photo fits the smaller wrapper */
+    .hero-photo {
+        width: 240px;
+        height: 280px;
+        z-index: 5;
+    }
 
-    /* Top center — above the head */
-    .si-4 { top: 10px;  left: 140px; right: auto; }
-    .si-5 { top: -10px; left: 230px; right: auto; }
+    /* Re-enable icons with smaller size and repositioned around the small photo */
+    .si-1, .si-2, .si-3, .si-4,
+    .si-5, .si-6, .si-7, .si-8 {
+        display: flex;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+    }
 
-    /* Right column — spread vertically down the right */
-    .si-6 { top: 10px;  right: 80px; left: auto; }
-    .si-7 { top: 30px;  right: 10px; left: auto; }
-    .si-8 { top: 120px; right: 5px;  left: auto; }
+    .si-1 i, .si-2 i, .si-3 i, .si-4 i,
+    .si-5 i, .si-6 i, .si-7 i, .si-8 i {
+        font-size: 1.2rem;
+    }
+
+    /* Left side — 3 icons stacked */
+    .si-1 { top: 5px;   left: -50px; right: auto; }
+    .si-2 { top: 80px;  left: -55px; right: auto; }
+    .si-3 { top: 155px; left: -50px; right: auto; }
+
+    /* Top center — 2 icons above head */
+    .si-4 { top: -20px; left: 60px;  right: auto; }
+    .si-5 { top: -20px; left: 140px; right: auto; }
+
+    /* Right side — 3 icons stacked */
+    .si-6 { top: 5px;   right: -50px; left: auto; }
+    .si-7 { top: 80px;  right: -55px; left: auto; }
+    .si-8 { top: 155px; right: -50px; left: auto; }
 }
 
 /* =====================
@@ -1103,12 +1126,12 @@ section {
 
 @media (max-width: 768px) {
     .hero-photo-wrapper {
-        width: 300px;
-        height: 340px;
+        width: 260px;
+        height: 300px;
     }
     .hero-photo {
-        width: 280px;
-        height: 320px;
+        width: 240px;
+        height: 280px;
     }
 }
 
