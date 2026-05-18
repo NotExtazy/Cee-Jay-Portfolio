@@ -1053,16 +1053,27 @@ section {
     display: none;
 }
 
+@keyframes mobile-icon-pop {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
 @media (max-width: 768px) {
     .skill-icon { display: none; }
+
+    .hero-visual {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
 
     .mobile-icons-row {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 10px;
-        margin-top: 16px;
         width: 100%;
+        padding: 0 8px;
     }
 
     .mobile-skill-icon {
@@ -1088,14 +1099,8 @@ section {
     .mobile-skill-icon:nth-child(7) { animation-delay: 0.4s; }
     .mobile-skill-icon:nth-child(8) { animation-delay: 0.45s; }
 
-    @keyframes mobile-icon-pop {
-        from { transform: scale(0); opacity: 0; }
-        to   { transform: scale(1); opacity: 1; }
-    }
-
     .mobile-skill-icon i { font-size: 1.3rem; }
 
-    /* Brand colors — same as desktop */
     .mobile-skill-icon:nth-child(1) i { color: #e34f26; }
     .mobile-skill-icon:nth-child(2) i { color: #264de4; }
     .mobile-skill-icon:nth-child(3) i { color: #f7df1e; }
