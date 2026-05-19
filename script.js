@@ -601,24 +601,20 @@ particleStyle.textContent = `
 document.head.appendChild(particleStyle);
 
 // =====================
-// Certificate Modal — opens PDF in iframe overlay
+// Certificate Modal
 // =====================
 document.addEventListener('DOMContentLoaded', () => {
-    const certModal       = document.getElementById('certModal');
-    const certModalFrame  = document.getElementById('certModalFrame');
-    const certModalTitle  = document.getElementById('certModalTitle');
-    const certModalClose  = document.getElementById('certModalClose');
-    const certBackdrop    = document.querySelector('.cert-modal-backdrop');
+    const certModal      = document.getElementById('certModal');
+    const certModalFrame = document.getElementById('certModalFrame');
+    const certModalTitle = document.getElementById('certModalTitle');
+    const certModalClose = document.getElementById('certModalClose');
+    const certBackdrop   = document.querySelector('.cert-modal-backdrop');
 
     document.querySelectorAll('.cert-item[data-cert]').forEach(item => {
         item.addEventListener('click', () => {
             const file  = item.getAttribute('data-cert');
             const title = item.getAttribute('data-title');
-            // Use Google Docs Viewer to render PDF inline (works on GitHub Pages)
-            const repoBase = 'https://raw.githubusercontent.com/NotExtazy/Cee-Jay-Portfolio/main/';
-            const pdfUrl   = repoBase + encodeURIComponent(file);
-            const viewerUrl = 'https://docs.google.com/viewer?url=' + encodeURIComponent(pdfUrl) + '&embedded=true';
-            certModalFrame.src         = viewerUrl;
+            certModalFrame.src         = file;
             certModalTitle.textContent = title;
             certModal.classList.add('open');
             document.body.style.overflow = 'hidden';
