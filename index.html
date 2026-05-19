@@ -367,69 +367,83 @@
     <section id="certifications" class="certifications">
         <div class="container">
             <h2 class="section-title">Certifications</h2>
+            <p class="cert-hint"><i class="fas fa-hand-pointer"></i> Click any certificate to view it</p>
             <div class="certifications-grid">
                 <div class="cert-category">
                     <h3>Security & Development</h3>
                     <div class="cert-list">
-                        <div class="cert-item">
+                        <div class="cert-item" data-cert="Security for Software Development Managers.pdf" data-title="Security for Software Development Managers (LFD125)">
                             <i class="fas fa-shield-alt"></i>
                             <span>Security for Software Development Managers (LFD125)</span>
+                            <i class="fas fa-eye cert-eye"></i>
                         </div>
-                        <div class="cert-item">
+                        <div class="cert-item" data-cert="Understanding the EU Cyber Resilience Act.pdf" data-title="Understanding the EU Cyber Resilience Act (CRA) (LFEL1001)">
                             <i class="fas fa-lock"></i>
                             <span>Understanding the EU Cyber Resilience Act (CRA) (LFEL1001)</span>
+                            <i class="fas fa-eye cert-eye"></i>
                         </div>
-                        <div class="cert-item">
+                        <div class="cert-item" data-cert="XSS Exploits and Defenses.pdf" data-title="XSS Exploits and Defenses (LFEL 1010)">
                             <i class="fas fa-bug"></i>
                             <span>XSS Exploits and Defenses (LFEL 1010)</span>
+                            <i class="fas fa-eye cert-eye"></i>
                         </div>
-                        <div class="cert-item">
+                        <div class="cert-item" data-cert="Introduction to Zero Trust.pdf" data-title="Introduction to Zero Trust (LFS183)">
                             <i class="fas fa-key"></i>
                             <span>Introduction to Zero Trust (LFS183)</span>
+                            <i class="fas fa-eye cert-eye"></i>
                         </div>
-                        <div class="cert-item">
+                        <div class="cert-item" data-cert="Developing Secure Software.pdf" data-title="Developing Secure Software (LFD121)">
                             <i class="fas fa-code"></i>
                             <span>Developing Secure Software (LFD121)</span>
+                            <i class="fas fa-eye cert-eye"></i>
                         </div>
-                        <div class="cert-item">
+                        <div class="cert-item" data-cert="Understanding the OWASP Top 10 Security Threats.pdf" data-title="Understanding the OWASP Top 10 Security Threats (SKF100)">
                             <i class="fas fa-shield-virus"></i>
                             <span>Understanding OWASP Top 10 Security Threats (SKF100)</span>
+                            <i class="fas fa-eye cert-eye"></i>
                         </div>
                     </div>
                 </div>
                 <div class="cert-category">
                     <h3>DevSecOps & Supply Chain</h3>
                     <div class="cert-list">
-                        <div class="cert-item">
+                        <div class="cert-item" data-cert="Introduction to DevSecOps for Managers.pdf" data-title="Introduction to DevSecOps for Managers (LFS180)">
                             <i class="fas fa-cogs"></i>
                             <span>Introduction to DevSec Ops for Managers (LFS180)</span>
+                            <i class="fas fa-eye cert-eye"></i>
                         </div>
-                        <div class="cert-item">
+                        <div class="cert-item" data-cert="Automating Supply Chain Security SBOMs and Signatures.pdf" data-title="Automating Supply Chain Security: SBOMs and Signatures (LFEL 1007)">
                             <i class="fas fa-link"></i>
                             <span>Automating Supply Chain Security: SBOMs and Signatures (LFEL 1007)</span>
+                            <i class="fas fa-eye cert-eye"></i>
                         </div>
-                        <div class="cert-item">
+                        <div class="cert-item" data-cert="Securing Projects with OpenSSF Scorecard.pdf" data-title="Securing Projects with OpenSSF Scorecard (LFEL1006)">
                             <i class="fas fa-clipboard-check"></i>
                             <span>Securing Projects with OpenSSF Scorecard (LFEL1006)</span>
+                            <i class="fas fa-eye cert-eye"></i>
                         </div>
-                        <div class="cert-item">
+                        <div class="cert-item" data-cert="Securing your Software Supply Chain with Sigstore.pdf" data-title="Securing your Software Supply Chain with Sigstore (LFS182)">
                             <i class="fas fa-signature"></i>
                             <span>Securing your Software Supply Chain with Sigstore (LFS182)</span>
+                            <i class="fas fa-eye cert-eye"></i>
                         </div>
                     </div>
                 </div>
                 <div class="cert-category">
                     <h3>Network Security</h3>
                     <div class="cert-list">
-                        <div class="cert-item">
+                        <div class="cert-item" data-cert="Ethical Hacker.pdf" data-title="Ethical Hacker (Cisco Networking Academy Program)">
                             <i class="fas fa-user-secret"></i>
                             <span>Ethical Hacker (Cisco Networking Academy Program)</span>
+                            <i class="fas fa-eye cert-eye"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
@@ -484,5 +498,17 @@
     </footer>
 
     <script src="script.js"></script>
+
+    <!-- Certificate Modal -->
+    <div class="cert-modal" id="certModal">
+        <div class="cert-modal-backdrop"></div>
+        <div class="cert-modal-box">
+            <div class="cert-modal-header">
+                <p class="cert-modal-title" id="certModalTitle"></p>
+                <button class="cert-modal-close" id="certModalClose"><i class="fas fa-times"></i></button>
+            </div>
+            <iframe class="cert-modal-frame" id="certModalFrame" src="" title="Certificate"></iframe>
+        </div>
+    </div>
 </body>
 </html>
