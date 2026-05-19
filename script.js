@@ -614,7 +614,11 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('click', () => {
             const file  = item.getAttribute('data-cert');
             const title = item.getAttribute('data-title');
-            certModalFrame.src         = file;
+            // Use Google Docs Viewer to render PDF inline (works on GitHub Pages)
+            const repoBase = 'https://raw.githubusercontent.com/NotExtazy/Cee-Jay-Portfolio/main/';
+            const pdfUrl   = repoBase + encodeURIComponent(file);
+            const viewerUrl = 'https://docs.google.com/viewer?url=' + encodeURIComponent(pdfUrl) + '&embedded=true';
+            certModalFrame.src         = viewerUrl;
             certModalTitle.textContent = title;
             certModal.classList.add('open');
             document.body.style.overflow = 'hidden';
